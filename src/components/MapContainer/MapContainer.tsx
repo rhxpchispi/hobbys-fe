@@ -1,10 +1,21 @@
+import L from 'leaflet'
 import { MapContainer as LeafletMap, TileLayer } from 'react-leaflet'
 import type { Curso } from '../../types/course'
 import { MapController } from './MapController'
 import { CourseMarkers } from './CourseMarkers'
 import styles from './MapContainer.module.css'
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 import 'leaflet/dist/leaflet.css'
+
+delete (L.Icon.Default.prototype as { _getIconUrl?: unknown })._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconUrl: markerIcon,
+  iconRetinaUrl: markerIcon2x,
+  shadowUrl: markerShadow,
+})
 
 interface MapContainerProps {
   cursos: Curso[]
